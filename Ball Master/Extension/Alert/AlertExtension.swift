@@ -16,7 +16,7 @@ import SwiftMessages
     messageView.button?.isHidden = true
     messageView.iconLabel?.isHidden = true
     messageView.iconImageView?.isHidden = true
-    messageView.configureTheme(backgroundColor: UIColor(hexString: "#000000"), foregroundColor: UIColor(hexString: "#FAFF00"))
+    messageView.configureTheme(backgroundColor: UIColor(hexString: "#12171B"), foregroundColor: UIColor(hexString: "#FAFF00"))
     messageView.configureDropShadow()
     messageView.configureBackgroundView(width: 400)
     var config = SwiftMessages.defaultConfig
@@ -38,15 +38,15 @@ struct DemoMessageView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(message.title).font(.system(size: 20, weight: .bold))
-            Text(message.body).font(.system(size: 20, weight: .bold))
+            Text(message.title).font(.custom("Sombra-Medium", size: 20))
+            Text(message.body).font(.custom("Sombra-Medium", size: 20))
         }
-        .foregroundColor(.theme.buttonColor)
+        .foregroundColor(.theme.mainTextColor)
         .multilineTextAlignment(.leading)
         .padding(30)
         // This makes the message width greedy
         .frame(maxWidth: .infinity)
-        .background(Color.theme.backgroundColor)
+        .background(Color(hex: "#12171B"))
         // This makes a tab-style view where the bottom corners are rounded and
         // the view's background extends to the top edge.
         .mask(

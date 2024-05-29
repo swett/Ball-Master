@@ -65,7 +65,8 @@
 		843CCB4D2C079B3A00BFFC08 /* PlannerCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CCB4C2C079B3A00BFFC08 /* PlannerCreationView.swift */; };
 		843CCB552C07A02500BFFC08 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CCB542C07A02500BFFC08 /* AlertExtension.swift */; };
 		843CCB592C07A42C00BFFC08 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 843CCB582C07A42C00BFFC08 /* SwiftMessages */; };
-		843CCB5B2C07A42C00BFFC08 /* SwiftMessages-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 843CCB5A2C07A42C00BFFC08 /* SwiftMessages-Dynamic */; };
+		849919FA2C07ADF800880B06 /* GamesCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849919F92C07ADF800880B06 /* GamesCreationViewModel.swift */; };
+		849919FC2C07AEC700880B06 /* GamesCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849919FB2C07AEC700880B06 /* GamesCreationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -141,6 +142,8 @@
 		843CCB4A2C079A0300BFFC08 /* PlannerCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerCreationViewModel.swift; sourceTree = "<group>"; };
 		843CCB4C2C079B3A00BFFC08 /* PlannerCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerCreationView.swift; sourceTree = "<group>"; };
 		843CCB542C07A02500BFFC08 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
+		849919F92C07ADF800880B06 /* GamesCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesCreationViewModel.swift; sourceTree = "<group>"; };
+		849919FB2C07AEC700880B06 /* GamesCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesCreationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +151,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				843CCB5B2C07A42C00BFFC08 /* SwiftMessages-Dynamic in Frameworks */,
 				843CCB592C07A42C00BFFC08 /* SwiftMessages in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,6 +235,7 @@
 				843CCB3D2C07685B00BFFC08 /* PlannerDeteil */,
 				8404F6062C00C57C000B6A09 /* Planer */,
 				8404F6052C00C575000B6A09 /* Coach */,
+				849919F62C07AD8B00880B06 /* GamesCreation */,
 				8404F6042C00C568000B6A09 /* Games */,
 				8404F6032C00C562000B6A09 /* Settings */,
 				8404F6022C00C55D000B6A09 /* TabView */,
@@ -733,6 +736,31 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		849919F62C07AD8B00880B06 /* GamesCreation */ = {
+			isa = PBXGroup;
+			children = (
+				849919F82C07AD9C00880B06 /* View */,
+				849919F72C07AD9600880B06 /* ViewModel */,
+			);
+			path = GamesCreation;
+			sourceTree = "<group>";
+		};
+		849919F72C07AD9600880B06 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				849919F92C07ADF800880B06 /* GamesCreationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		849919F82C07AD9C00880B06 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				849919FB2C07AEC700880B06 /* GamesCreationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -752,7 +780,6 @@
 			name = "Ball Master";
 			packageProductDependencies = (
 				843CCB582C07A42C00BFFC08 /* SwiftMessages */,
-				843CCB5A2C07A42C00BFFC08 /* SwiftMessages-Dynamic */,
 			);
 			productName = "Ball Master";
 			productReference = 8404F5E22C00BBB9000B6A09 /* Ball Master.app */;
@@ -847,6 +874,7 @@
 				843CCB4B2C079A0300BFFC08 /* PlannerCreationViewModel.swift in Sources */,
 				8404F63A2C04B9CF000B6A09 /* TextExtension.swift in Sources */,
 				8404F67D2C062064000B6A09 /* SelectionCell.swift in Sources */,
+				849919FC2C07AEC700880B06 /* GamesCreationView.swift in Sources */,
 				8404F67F2C072EA3000B6A09 /* PracticeCell.swift in Sources */,
 				8404F6272C00C9C4000B6A09 /* SettingsView.swift in Sources */,
 				8404F65A2C04D9E2000B6A09 /* ImageExtension.swift in Sources */,
@@ -859,6 +887,7 @@
 				8404F6212C00C91E000B6A09 /* TabViewVC.swift in Sources */,
 				8404F5FF2C00C53F000B6A09 /* ColorExtension.swift in Sources */,
 				8404F62B2C00CA1A000B6A09 /* SpinnerView.swift in Sources */,
+				849919FA2C07ADF800880B06 /* GamesCreationViewModel.swift in Sources */,
 				8404F6782C061E7B000B6A09 /* PracticeType.swift in Sources */,
 				8404F6232C00C9A9000B6A09 /* PreloaderView.swift in Sources */,
 				8404F64A2C04CA81000B6A09 /* AppData.swift in Sources */,
@@ -1105,11 +1134,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 843CCB4E2C079FF900BFFC08 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
 			productName = SwiftMessages;
-		};
-		843CCB5A2C07A42C00BFFC08 /* SwiftMessages-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 843CCB4E2C079FF900BFFC08 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
-			productName = "SwiftMessages-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
