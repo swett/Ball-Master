@@ -21,10 +21,10 @@ struct TermsPolicy: View {
                             }
                             .padding(.leading, 16)
                             
-                            Text(viewModel.type == .terms ? "Terms" : "Policy")
-                                .font(.custom("Montserrat-Medium", size: 18))
-                                .foregroundColor(Color.theme.mainTextColor)
-                                .padding(.leading, 90.5)
+//                            Text(viewModel.type == .terms ? "Terms" : "Policy")
+//                                .font(.custom("Montserrat-Medium", size: 18))
+//                                .foregroundColor(Color.theme.mainTextColor)
+//                                .padding(.leading, 90.5)
                             Spacer()
                         }
                     }

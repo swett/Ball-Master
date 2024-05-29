@@ -8,6 +8,7 @@
 import Foundation
 
 class GamesViewModel: ObservableObject {
+    @Published var gamesArray: [String] = []
     private let coordinator: CoordinatorProtocol?
     var view: TabViewVC?
     init(coordinator: CoordinatorProtocol? = nil, view: TabViewVC? = nil) {

@@ -44,6 +44,7 @@ class SettingsViewModel: ObservableObject {
             .staticCell(model: SettingsOption(title: "Privacy Policy", picture: "next")),
             .staticCell(model: SettingsOption(title: "Feedback", picture: "next")),
             .staticCell(model: SettingsOption(title: "Rate Us", picture: "next")),
+            .staticCell(model: SettingsOption(title: "Favorites", picture: "next")),
             .staticCell(model: SettingsOption(title: "Best Practice", picture: "next"))
         ])
     ]

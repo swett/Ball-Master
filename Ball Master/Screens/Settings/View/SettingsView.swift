@@ -63,11 +63,10 @@ extension SettingsView {
                 Spacer()
             }
             .padding(.horizontal, 16)
-            .padding(.bottom)
             RoundedRectangle(cornerRadius: 30)
                 .foregroundStyle(Color(hex: "#12171B"))
-                .frame(width: 358, height: 436)
-                .padding(.bottom, 40)
+                .frame(width: 358, height: 496)
+                .padding(.bottom, 49)
                 .overlay {
                     List {
                         ForEach(viewModel.settings, id: \.self) {

@@ -41,21 +41,50 @@ class AppData: NSObject {
             defaultData.set(newValue, forKey: Keys.vibration)
         }
     }
-//    var userStat: UserStats = UserStats(userID: UUID().uuidString, userJoinDate: Date(), lastTrainingDate: Date())
-//    var userSets: [SetModel] = []
-//    var savedSets: [SetModel] = []
-//    var savedStrategy: [Strategy] = []
+    //    var userStat: UserStats = UserStats(userID: UUID().uuidString, userJoinDate: Date(), lastTrainingDate: Date())
+    //    var userSets: [SetModel] = []
+    //    var savedSets: [SetModel] = []
+    var savedCoaches: [CoachModel] = []
     static let shared: AppData = AppData()
 }
 
 
 extension AppData {
     func defaultLoad() {
-
+        
     }
     
     func loadData() {
-
+        
     }
 }
 
+
+
+
+extension AppData {
+    func addStrategyToSavedStrategy(model: CoachModel) {
+        if let index = savedCoaches.firstIndex(where: { $0.id == model.id }) {
+            savedCoaches.remove(at: index)
+        } else {
+            savedCoaches.append(model)
+        }
+        savedCoach()
+    }
+    
+    func savedCoach() {
+        let encoder = JSONEncoder()
+        let key = Keys.savedStrategy
+        guard let data = try? encoder.encode(savedCoaches) else {
+            return
+        }
+        defaultData.set(data, forKey: key)
+    }
+    
+    func getSavedCoaches() -> [CoachModel] {
+        let decoder = JSONDecoder()
+        let key = Keys.savedStrategy
+        savedCoaches = try! decoder.decode([CoachModel].self, from: defaultData.data(forKey: key)!)
+        return savedCoaches
+    }
+}

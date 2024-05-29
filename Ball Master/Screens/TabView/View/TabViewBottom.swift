@@ -38,7 +38,7 @@ struct TabViewBottom: View {
                         
                     }
                     .frame(height: 76)
-                    .padding(.bottom, 32)
+                    .padding(.bottom, 12)
                     
                     
                 }

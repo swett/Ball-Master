@@ -9,6 +9,7 @@ import Foundation
 
 
 class PlannerViewModel: ObservableObject {
+    @Published var plannerArrray: [String] = []
     private let coordinator: CoordinatorProtocol?
     var view: TabViewVC?
     init(coordinator: CoordinatorProtocol? = nil, view: TabViewVC? = nil) {

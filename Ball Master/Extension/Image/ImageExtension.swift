@@ -15,6 +15,7 @@ func getImageBySettingsName(name: String) -> String {
     case "Rate Us": return "rate"
     case "Feedback": return "feedback"
     case "Best Practice": return "bestPractice"
+    case "Favorites": return "favorite"
     default: break
     }
     return ""
