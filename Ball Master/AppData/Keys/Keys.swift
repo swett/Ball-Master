@@ -13,4 +13,5 @@ enum Keys {
     static let savedSets = "SavedSets"
     static let userStats = "UserStats"
     static let savedStrategy = "SavedStrategy"
+    static let savedPlanners = "SavedPlanners"
 }

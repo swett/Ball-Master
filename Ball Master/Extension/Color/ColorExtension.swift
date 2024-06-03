@@ -28,35 +28,6 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
-    
-    static var mainBgColor: UIColor {
-        return UIColor(hexString: "#181818")
-    }
-    
-    static var tabBgColor: UIColor {
-        return UIColor(hexString: "#081E42")
-    }
-    
-    static var backgroundColorForNavigation: UIColor {
-        return UIColor(hexString: "#282828")
-    }
-    
-    static var secondBgColor: UIColor {
-        return UIColor(hexString: "#1F1D31")
-    }
-    
-    static var mainTextColor: UIColor {
-        return UIColor(hexString: "#FFFFFF")
-    }
-    static var mainDetailsColor: UIColor {
-        return UIColor(hexString: "#C0C0C0")
-    }
-    static var mainButtonColor: UIColor {
-        return UIColor(hexString: "#202020")
-    }
-    static var darkTextColor: UIColor {
-        return UIColor(hexString: "#1D1D1D")
-    }
 }
 
 

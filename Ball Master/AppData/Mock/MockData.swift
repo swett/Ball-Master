@@ -37,3 +37,5 @@ Balance: Maintain a structure that can counter the opposition's formation.
 Compactness: Reduce the space between players to limit opposition play.
 Discipline: Adhere to the tactical plan and avoid unnecessary fouls.
 """
+
+let teamsColor: [String] = ["#FFD74A","#96FF7C","#D0EA59","#ED7CFF","#EA7359","#34E7DC"]

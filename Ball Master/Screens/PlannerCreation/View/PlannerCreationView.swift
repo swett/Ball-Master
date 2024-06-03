@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import PencilKit
 struct PlannerCreationView: View {
+    @Environment(\.undoManager) private var undoManager
     @ObservedObject var viewModel: PlannerCreationViewModel
     var body: some View {
         ZStack(alignment: .top) {
@@ -16,13 +18,15 @@ struct PlannerCreationView: View {
                 header
                 
                 if viewModel.isTextViewHidden {
-                    
+                    plannerSection
                 } else {
                     main
                 }
             }
         }
+//        .environment(\.colorScheme, .dark)
     }
+    
 }
 
 #Preview {
@@ -33,15 +37,53 @@ struct PlannerCreationView: View {
 extension PlannerCreationView {
     private var header: some View {
         HStack {
-            Button {
-                viewModel.backToMain()
-            } label: {
-                Image("backButton")
-                    .frame(width: 52, height: 52)
+            if viewModel.isTextViewHidden {
+                Button {
+                    withAnimation(.smooth) {
+                        viewModel.isShowCloseAlert.toggle()
+                    }
+                   
+                } label: {
+                    Text("Close")
+                        .font(.custom("Sombra-Medium", size: 17))
+                        .foregroundStyle(Color(hex: "#FF453A"))
+                }
+                .padding(.leading, 16)
+                .alert("Do you really want to close?",isPresented: $viewModel.isShowCloseAlert) {
+                    Button("No", role: .cancel) { }
+                    Button {
+                        viewModel.backToMain()
+                    } label: {
+                        Text("Yes")
+                    }
+                }
+                Spacer()
+                Text("Some Planner Name")
+                    .font(.custom("Sombra-Medium", size: 17))
+                    .foregroundStyle(Color.theme.mainTextColor)
+                Spacer()
+                Button {
+                    
+                } label: {
+                    Text("Save")
+                        .font(.custom("Sombra-Medium", size: 17))
+                        .foregroundStyle(Color.theme.buttonColor)
+                }
+                .padding(.trailing, 16)
+            } else {
+                Button {
+                    viewModel.backToMain()
+                } label: {
+                    Image("backButton")
+                        .frame(width: 52, height: 52)
+                }
+                .padding(.leading, 16)
+                Spacer()
             }
-            .padding(.leading, 16)
-            Spacer()
+            
         }
+        .padding(.bottom, 16)
+        .background(viewModel.isTextViewHidden ? Color(hex: "#12171B"): .clear)
     }
 }
 
@@ -140,7 +182,26 @@ struct ClearButton: ViewModifier {
                 Button {
                     text = ""
                 } label: {
-                    Image("clearButton")
+                    Image("closeButton")
+                }
+                .padding(.trailing, 28)
+            }
+        }
+    }
+}
+
+struct ClearButtonNumber: ViewModifier {
+    @Binding var text: Double
+    
+    func body(content: Content) -> some View {
+        ZStack(alignment: .trailing) {
+            content
+            
+            if !text.isNaN {
+                Button {
+                    text = 0
+                } label: {
+                    Image("closeButton")
                 }
                 .padding(.trailing, 28)
             }
@@ -152,13 +213,132 @@ extension View {
     func clearButton(text: Binding<String>) -> some View {
         modifier(ClearButton(text: text))
     }
+    func clearNumberButton(text: Binding<Double>) -> some View {
+        modifier(ClearButtonNumber(text: text))
+    }
 }
 
 extension PlannerCreationView {
     private var plannerSection: some View {
         VStack {
-            
+            drawingElement
+            Spacer()
+            HStack {
+                Button {
+                    print("undo")
+                    undoManager?.undo()
+                } label: {
+                    Image("undoButton")
+                }
+                .padding(.leading, 16)
+                
+                Button {
+                    undoManager?.redo()
+                } label: {
+                    Image("forwardButton")
+                }
+              
+                Button {
+                    withAnimation(.smooth) {
+                        viewModel.isDrawing = false
+                        viewModel.isEraser = true
+                    }
+                } label: {
+                    Image(viewModel.isEraser ? "clearButtonOn" : "clearButton")
+                }
+                Spacer()
+                Button {
+                    withAnimation(.smooth) {
+                        viewModel.isSheetShowed.toggle()
+                    }
+                    
+                } label: {
+                    Image("addPlayer")
+                }
+                .sheet(isPresented: $viewModel.isSheetShowed, content: {
+                    PlayerAddSheet(isPresented: $viewModel.isSheetShowed)
+                        .presentationDetents([.height(308)])
+                        .environmentObject(viewModel)
+                })
+                Button {
+                    withAnimation(.smooth) {
+                        viewModel.isDrawing.toggle()
+                        viewModel.isEraser = false
+                    }
+                } label: {
+                    Image(viewModel.isDrawing ? "drawingOnButton" : "paintButton")
+                }
+                .padding(.trailing, 16)
+            }
+            .padding(.top, 16)
+            .background(Color(hex: "#12171B"))
         }
     }
 }
 
+
+extension PlannerCreationView {
+     private var drawingElement: some View {
+        ZStack(alignment: .top) {
+            Image("field")
+                .padding(.top, 20)
+            
+            DrawingView(canvas: $viewModel.canvas, isDrawing: $viewModel.isDrawing)
+                
+            ForEach(viewModel.playersArray, id: \.self) {
+                item in
+                
+                DraggablePlayer(model: item, isShowAlert: $viewModel.isShowAlert)
+                    .alert("Delete Player?",isPresented: $viewModel.isShowAlert) {
+                        Button("Cancel", role: .cancel) { }
+                        Button(role: .destructive) {
+                            viewModel.deletePlayerFromField(player: item)
+                        } label: {
+                            Text("Delete")
+                            
+                        }
+                    }
+            }
+            
+            
+            
+            if !viewModel.isHideTip {
+                TipView(hideTip: $viewModel.isHideTip)
+            }
+        }
+    }
+}
+
+
+
+extension View {
+    func snapshot() -> UIImage {
+        let controller = UIHostingController(rootView: self)
+        let view = controller.view
+
+        let targetSize = controller.view.intrinsicContentSize
+        view?.bounds = CGRect(origin: .zero, size: targetSize)
+        view?.backgroundColor = .clear
+
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+
+        return renderer.image { _ in
+            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+        }
+    }
+    
+}
+
+extension PlannerCreationView {
+    func saveModel() {
+        let fileName = UUID().uuidString
+        let image = drawingElement.snapshot()
+        if let imagePath = ImageSaver.shared.saveImageToDocumentsDirectory(image: image, fileName: fileName) {
+            let newModel = PlannerModel(name: "Example Plan", description: "Description", planImage: imagePath)
+            AppData.shared.plannerArray.append(newModel)
+            AppData.shared.savePlanners()
+        } else {
+            print("Error saving image")
+        }
+    }
+}

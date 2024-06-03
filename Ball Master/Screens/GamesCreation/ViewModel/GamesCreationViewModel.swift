@@ -17,6 +17,11 @@ class GamesCreationViewModel: ObservableObject {
     @Published var isTeamOneNameInputed: Bool = false
     @Published var isTeamTwoNameInputed: Bool = false
     @Published var isAllInputed: Bool =  false
+    
+    @Published var firstLettersTeamOne: String = ""
+    @Published var firstLettersTeamTwo: String = ""
+    @Published var firstTeamColor: String = teamsColor.randomElement()!
+    @Published var secondTeamColor: String = teamsColor.randomElement()!
     private let coordinator: CoordinatorProtocol?
     init(coordinator: CoordinatorProtocol? = nil) {
         self.coordinator = coordinator
@@ -49,4 +54,27 @@ extension GamesCreationViewModel {
                 isAllInputed = false
             }
         }
+}
+
+
+extension GamesCreationViewModel {
+    func getFirstLetters() {
+        
+        firstLettersTeamOne = getLetters(words: teamOneName)
+        firstLettersTeamTwo = getLetters(words: teamTwoName)
+    }
+    
+    func getLetters(words: String) -> String {
+        
+        let words = words.split(separator: " ")
+        var firstLetters = ""
+
+        for word in words {
+            if let firstLetter = word.first {
+                firstLetters.append(firstLetter)
+            }
+        }
+        
+        return firstLetters
+    }
 }

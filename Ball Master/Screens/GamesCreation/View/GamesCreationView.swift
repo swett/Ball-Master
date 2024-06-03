@@ -17,6 +17,17 @@ struct GamesCreationView: View {
                 header
                 main
             }
+            
+            if viewModel.isPopUpShowed {
+                VisualEffectView(effect: UIBlurEffect(style: .dark))
+                    .ignoresSafeArea(.all)
+                VStack {
+                    Spacer()
+                    GameCreationPopUp()
+                        .environmentObject(viewModel)
+                    Spacer()
+                }
+            }
         }
     }
 }
@@ -167,7 +178,9 @@ extension GamesCreationView {
                 Spacer()
                 Button {
                     withAnimation(.smooth) {
-    //                    viewModel.isTextViewHidden.toggle()
+                        viewModel.getFirstLetters()
+                        viewModel.isPopUpShowed.toggle()
+                        
                     }
                     
                 } label: {
@@ -178,6 +191,7 @@ extension GamesCreationView {
                         .background(Color.theme.buttonColor)
                         .cornerRadius(30)
                 }
+                .padding(.top, 10)
                 .opacity(!viewModel.isAllInputed ? 0.5 : 1)
                 .disabled(!viewModel.isAllInputed)
             }
