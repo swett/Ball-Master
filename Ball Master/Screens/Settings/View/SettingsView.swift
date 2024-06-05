@@ -33,10 +33,12 @@ extension SettingsView {
     private var user: some View {
         VStack {
             Image("profile")
+                .resizable()
+                .frame(width: DeviceType.IS_SMALL ? 40 : 80, height: DeviceType.IS_SMALL ? 40 : 80)
             Text("Dear User")
                 .font(.custom("Sombra-Medium", size: 20))
                 .foregroundStyle(Color.theme.mainTextColor)
-            Text("id: 7503")
+            Text("id: \(AppData.shared.userStat.id.uuidString.prefix(4))")
                 .foregroundStyle(Color.theme.deteilsTextColor)
                 .font(.custom("Montserrat-Regular", size: 15))
             Button {
@@ -50,6 +52,7 @@ extension SettingsView {
                     .cornerRadius(28)
             }
         }
+        .padding(.top, DeviceType.IS_SMALL ? 25 : 0 )
     }
 }
 
@@ -83,6 +86,7 @@ extension SettingsView {
                                         SwitchCellView(option: model)
                                     }
                                 }
+                                Spacer(minLength: 90)
                             } header: {
                                 Text("")
                                     .frame(height: 0)

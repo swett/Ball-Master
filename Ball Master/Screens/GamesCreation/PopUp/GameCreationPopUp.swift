@@ -24,7 +24,7 @@ struct GameCreationPopUp: View {
                                 .font(.custom("Sombra-Medium", size: 13))
                                 .foregroundStyle(Color.theme.buttonTextColor)
                         }
-                    Text("Some Team Name")
+                    Text("\(viewModel.teamOneName)")
                         .foregroundStyle(Color.theme.mainTextColor)
                         .font(.custom("Sombra-Medium", size: 14))
                         .multilineTextAlignment(.center)
@@ -44,7 +44,7 @@ struct GameCreationPopUp: View {
                                 .font(.custom("Sombra-Medium", size: 13))
                                 .foregroundStyle(Color.theme.buttonTextColor)
                         }
-                    Text("Some Team Name")
+                    Text("\(viewModel.teamTwoName)")
                         .foregroundStyle(Color.theme.mainTextColor)
                         .font(.custom("Sombra-Medium", size: 14))
                         .multilineTextAlignment(.center)

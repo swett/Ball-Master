@@ -18,6 +18,7 @@ struct CoachDetailView: View {
                 .foregroundStyle(Color(hex: "#12171B"))
                 .frame(height: 290)
                 .ignoresSafeArea(.all)
+            
             VStack {
                 header
                 coach

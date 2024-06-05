@@ -124,6 +124,9 @@ extension SavedView {
                 ForEach(viewModel.games, id: \.self) {
                     item in
                     GameCell()
+                        .onTapGesture {
+                            
+                        }
                 }
             }
         }

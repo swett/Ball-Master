@@ -64,17 +64,20 @@ extension GamesCreationViewModel {
         firstLettersTeamTwo = getLetters(words: teamTwoName)
     }
     
-    func getLetters(words: String) -> String {
-        
-        let words = words.split(separator: " ")
-        var firstLetters = ""
+ 
+}
 
-        for word in words {
-            if let firstLetter = word.first {
-                firstLetters.append(firstLetter)
-            }
+
+func getLetters(words: String) -> String {
+    
+    let words = words.split(separator: " ")
+    var firstLetters = ""
+
+    for word in words {
+        if let firstLetter = word.first {
+            firstLetters.append(firstLetter)
         }
-        
-        return firstLetters
     }
+    
+    return firstLetters
 }

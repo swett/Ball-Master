@@ -41,6 +41,7 @@ class AppData: NSObject {
             defaultData.set(newValue, forKey: Keys.vibration)
         }
     }
+    var userStat: User = User()
     var plannerArray: [PlannerModel] = []
     var savedCoaches: [CoachModel] = []
     static let shared: AppData = AppData()
@@ -100,6 +101,22 @@ extension AppData {
         let key = Keys.savedPlanners
         plannerArray = try! decoder.decode([PlannerModel].self, from: defaultData.data(forKey: key)!)
         return plannerArray
+    }
+    
+    func saveUserStats() {
+        let encoder = JSONEncoder()
+        let key = Keys.userStats
+        guard let data = try? encoder.encode(userStat) else {
+            return
+        }
+        defaultData.set(data, forKey: key)
+    }
+    
+    func getUserStats() -> User {
+        let decoder = JSONDecoder()
+        let key = Keys.userStats
+        userStat = try! decoder.decode(User.self, from: defaultData.data(forKey: key)!)
+        return userStat
     }
     
 }

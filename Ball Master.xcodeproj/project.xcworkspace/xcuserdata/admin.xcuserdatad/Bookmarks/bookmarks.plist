@@ -132,7 +132,7 @@
 </string>
 				<key>leading</key>
 				<string>    
-    func showPracticeDeteil() {
+    func showPracticeDeteil(model: PracticeModel) {
         // add coordinator for practice</string>
 				<key>trailing</key>
 				<string>    }

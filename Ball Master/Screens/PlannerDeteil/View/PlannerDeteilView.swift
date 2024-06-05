@@ -24,7 +24,7 @@ struct PlannerDeteilView: View {
 }
 
 #Preview {
-    PlannerDeteilView(viewModel: PlannerDeteilViewModel())
+    PlannerDeteilView(viewModel: PlannerDeteilViewModel( planner: PlannerModel(name: "", description: "", planImage: "")))
 }
 
 

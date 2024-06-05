@@ -102,7 +102,7 @@ extension BestPracticeView {
                     item in
                     PracticeCell(model: item)
                         .onTapGesture {
-                            viewModel.showPracticeDeteil()
+                            viewModel.showPracticeDeteil(model: item)
                         }
                 }
                 Spacer(minLength: 60)
