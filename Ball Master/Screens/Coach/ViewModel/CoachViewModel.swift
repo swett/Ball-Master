@@ -28,4 +28,8 @@ extension CoachViewModel {
             AppData.shared.addStrategyToSavedStrategy(model: self.coaches[index])
         }
     }
+    
+    func openDeteilCoach(model: CoachModel) {
+        coordinator?.showCoachDeteil(coach: model)
+    }
 }

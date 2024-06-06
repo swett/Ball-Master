@@ -10,12 +10,14 @@ import Foundation
 
 class SavedViewModel: ObservableObject {
     @Published var coaches: [CoachModel] = [CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy")]
-    @Published var games: [String] = ["1","2","3","4","5","6"]
+    @Published var games: [GameModel] = []
+    var savedGames:[GameModel] = AppData.shared.savedGames
     @Published var selectedIndex: Int = 0
     var saveHandler: (_ index: Int) -> Void = {index in}
     private let coordinator: CoordinatorProtocol?
     init(coordinator: CoordinatorProtocol? = nil) {
         self.coordinator = coordinator
+        self.games = savedGames
         self.bind()
     }
 }
@@ -25,7 +27,13 @@ extension SavedViewModel {
     func backToMain() {
         coordinator?.popOneScreenBack()
     }
+    func showDeteilGame(model: GameModel) {
+        coordinator?.showGameDeteil(game: model)
+    }
     
+    func showCoachDeteil(model: CoachModel) {
+        coordinator?.showCoachDeteil(coach: model)
+    }
 }
 
 

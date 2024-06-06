@@ -85,6 +85,10 @@
 		841B7DEE2C105D53000EA371 /* GameDeteilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B7DED2C105D53000EA371 /* GameDeteilView.swift */; };
 		841B7DF02C106192000EA371 /* GameDeteilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B7DEF2C106192000EA371 /* GameDeteilVC.swift */; };
 		841B7DF32C10D3A5000EA371 /* PointsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B7DF22C10D3A5000EA371 /* PointsSheet.swift */; };
+		841B7DF62C11B976000EA371 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B7DF52C11B976000EA371 /* TimerManager.swift */; };
+		841B7DF92C11C75B000EA371 /* TimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B7DF82C11C75B000EA371 /* TimeExtension.swift */; };
+		841B7DFC2C11E3F9000EA371 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B7DFB2C11E3F9000EA371 /* DateExtension.swift */; };
+		841B7DFF2C11E5F6000EA371 /* PlannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B7DFE2C11E5F6000EA371 /* PlannerCell.swift */; };
 		843CCB352C074D8000BFFC08 /* SavedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CCB342C074D8000BFFC08 /* SavedViewModel.swift */; };
 		843CCB372C074EE500BFFC08 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CCB362C074EE500BFFC08 /* SavedView.swift */; };
 		843CCB3A2C07530E00BFFC08 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CCB392C07530E00BFFC08 /* GameCell.swift */; };
@@ -198,6 +202,10 @@
 		841B7DED2C105D53000EA371 /* GameDeteilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDeteilView.swift; sourceTree = "<group>"; };
 		841B7DEF2C106192000EA371 /* GameDeteilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDeteilVC.swift; sourceTree = "<group>"; };
 		841B7DF22C10D3A5000EA371 /* PointsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsSheet.swift; sourceTree = "<group>"; };
+		841B7DF52C11B976000EA371 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		841B7DF82C11C75B000EA371 /* TimeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeExtension.swift; sourceTree = "<group>"; };
+		841B7DFB2C11E3F9000EA371 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		841B7DFE2C11E5F6000EA371 /* PlannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerCell.swift; sourceTree = "<group>"; };
 		843CCB342C074D8000BFFC08 /* SavedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewModel.swift; sourceTree = "<group>"; };
 		843CCB362C074EE500BFFC08 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		843CCB392C07530E00BFFC08 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
@@ -264,6 +272,8 @@
 		8404F5F92C00BEF7000B6A09 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				841B7DFA2C11E3E7000EA371 /* Date */,
+				841B7DF72C11C749000EA371 /* Time */,
 				841B7DC22C103EA3000EA371 /* Screen */,
 				841B7DA72C0DE08F000EA371 /* DraggablePlayer */,
 				84991A002C0891FC00880B06 /* BlurView */,
@@ -279,6 +289,7 @@
 		8404F5FA2C00BF5A000B6A09 /* AppData */ = {
 			isa = PBXGroup;
 			children = (
+				841B7DF42C11B960000EA371 /* TimerManager */,
 				841B7DAD2C0E2647000EA371 /* SaveImage */,
 				8404F66A2C060BBA000B6A09 /* Mock */,
 				8404F6602C05F940000B6A09 /* Models */,
@@ -392,6 +403,7 @@
 		8404F6062C00C57C000B6A09 /* Planer */ = {
 			isa = PBXGroup;
 			children = (
+				841B7DFD2C11E5EB000EA371 /* Cell */,
 				8404F6152C00C828000B6A09 /* View */,
 				8404F6142C00C822000B6A09 /* ViewModel */,
 			);
@@ -911,6 +923,38 @@
 			path = Sheet;
 			sourceTree = "<group>";
 		};
+		841B7DF42C11B960000EA371 /* TimerManager */ = {
+			isa = PBXGroup;
+			children = (
+				841B7DF52C11B976000EA371 /* TimerManager.swift */,
+			);
+			path = TimerManager;
+			sourceTree = "<group>";
+		};
+		841B7DF72C11C749000EA371 /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				841B7DF82C11C75B000EA371 /* TimeExtension.swift */,
+			);
+			path = Time;
+			sourceTree = "<group>";
+		};
+		841B7DFA2C11E3E7000EA371 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				841B7DFB2C11E3F9000EA371 /* DateExtension.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		841B7DFD2C11E5EB000EA371 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				841B7DFE2C11E5F6000EA371 /* PlannerCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		843CCB322C074D6500BFFC08 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1163,9 +1207,11 @@
 				843CCB552C07A02500BFFC08 /* AlertExtension.swift in Sources */,
 				841B7DE12C105059000EA371 /* BestPracticeDeteilVC.swift in Sources */,
 				841B7DC12C103B77000EA371 /* EventCell.swift in Sources */,
+				841B7DF62C11B976000EA371 /* TimerManager.swift in Sources */,
 				843CCB452C0768F500BFFC08 /* PlannerDeteilViewModel.swift in Sources */,
 				841B7DB12C0E2706000EA371 /* ImageSaver.swift in Sources */,
 				843CCB3A2C07530E00BFFC08 /* GameCell.swift in Sources */,
+				841B7DFC2C11E3F9000EA371 /* DateExtension.swift in Sources */,
 				8404F6622C05F952000B6A09 /* CoachModel.swift in Sources */,
 				8404F61F2C00C8D3000B6A09 /* TermsAndPrivacyViewModel.swift in Sources */,
 				841B7DAC2C0E1CF4000EA371 /* PlannerModel.swift in Sources */,
@@ -1184,6 +1230,7 @@
 				841B7DC72C104284000EA371 /* UserModel.swift in Sources */,
 				841B7DDF2C104E61000EA371 /* CoachDeteilVC.swift in Sources */,
 				8404F6352C04B8E8000B6A09 /* PreloaderViewModel.swift in Sources */,
+				841B7DF92C11C75B000EA371 /* TimeExtension.swift in Sources */,
 				841B7DF32C10D3A5000EA371 /* PointsSheet.swift in Sources */,
 				841B7DBE2C0F4928000EA371 /* GameActiveViewModel.swift in Sources */,
 				8404F6252C00C9B7000B6A09 /* OnboardingView.swift in Sources */,
@@ -1222,6 +1269,7 @@
 				8404F6762C061D87000B6A09 /* BestPracticeViewModel.swift in Sources */,
 				8404F6372C04B93C000B6A09 /* OnBoardingViewModel.swift in Sources */,
 				8404F6212C00C91E000B6A09 /* TabViewVC.swift in Sources */,
+				841B7DFF2C11E5F6000EA371 /* PlannerCell.swift in Sources */,
 				8404F5FF2C00C53F000B6A09 /* ColorExtension.swift in Sources */,
 				8404F62B2C00CA1A000B6A09 /* SpinnerView.swift in Sources */,
 				849919FF2C087AF600880B06 /* GameCreationPopUp.swift in Sources */,

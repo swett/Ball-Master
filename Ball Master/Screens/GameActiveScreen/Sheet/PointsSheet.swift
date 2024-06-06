@@ -31,9 +31,9 @@ struct PointsSheet: View {
                     Button {
                         
                         if viewModel.selectedTeam == 1 {
-                            viewModel.addEvent(event: Events(time: 10, team: viewModel.game.teams.home, score: selectedNumber))
+                            viewModel.addEvent(event: Events(time: Int((viewModel.gameUpdate?.currentTime)!), team: viewModel.game.teams.home, score: selectedNumber))
                         } else {
-                            viewModel.addEvent(event: Events(time: 10, team: viewModel.game.teams.away, score: selectedNumber))
+                            viewModel.addEvent(event: Events(time: Int((viewModel.gameUpdate?.currentTime)!), team: viewModel.game.teams.away, score: selectedNumber))
                         }
                         
                         withAnimation(.smooth) {

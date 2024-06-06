@@ -10,6 +10,7 @@ import Foundation
 
 class PlannerDeteilViewModel: ObservableObject {
     var model: PlannerModel
+    
     private let coordinator: CoordinatorProtocol?
     init(coordinator: CoordinatorProtocol? = nil, planner: PlannerModel) {
         self.coordinator = coordinator

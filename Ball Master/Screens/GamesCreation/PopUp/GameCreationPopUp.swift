@@ -54,9 +54,7 @@ struct GameCreationPopUp: View {
             .padding(.horizontal, 24)
             .padding(.top, 20)
             Button {
-                withAnimation(.smooth) {
-                    viewModel.isPopUpShowed.toggle()
-                }
+                viewModel.createGame()
             } label: {
                 Text("Start")
                     .foregroundStyle(Color.theme.buttonTextColor)

@@ -9,8 +9,8 @@ import Foundation
 enum Keys {
     static let notifications = "KeyNotifications"
     static let vibration = "KeyVibration"
-    static let userSets = "UserSets"
-    static let savedSets = "SavedSets"
+    static let gamesAll = "GamesAll"
+    static let gamesSaved = "GamesSaved"
     static let userStats = "UserStats"
     static let savedStrategy = "SavedStrategy"
     static let savedPlanners = "SavedPlanners"

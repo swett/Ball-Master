@@ -9,7 +9,7 @@ import Foundation
 import PencilKit
 
 class PlannerCreationViewModel: ObservableObject {
-    @Published var isTextViewHidden: Bool = true
+    @Published var isTextViewHidden: Bool = false
     @Published var plannerName: String = ""
     @Published var plannerDescription: String = ""
     @Published var isPlannerNameInputed: Bool = false
@@ -23,7 +23,9 @@ class PlannerCreationViewModel: ObservableObject {
     @Published var isSheetShowed: Bool = false
     @Published var isShowAlert: Bool = false
     @Published var isShowCloseAlert: Bool = false
+    @Published var isShowSaveAlert: Bool = false
     @Published var canvas = PKCanvasView()
+    @Published var imageSnapShoot: UIImage?
 //    @Published var drawingStates: [PKDrawing] = []
 //    @Published var currentStateIndex: Int = -1
     @Published var selectedState: PlayerOrOpponent = .player
@@ -70,35 +72,6 @@ extension PlannerCreationViewModel {
         }
 }
 
-
-
-//extension PlannerCreationViewModel {
-//    func undo() {
-//            guard currentStateIndex > 0 else { return }
-//            currentStateIndex -= 1
-//            canvas.drawing = drawingStates[currentStateIndex]
-//        print(canvas.drawing)
-//        }
-//        
-//        func redo() {
-//            guard currentStateIndex < drawingStates.count - 1 else { return }
-//            currentStateIndex += 1
-//            canvas.drawing = drawingStates[currentStateIndex]
-//        }
-//        
-//        func save() {
-//            let image = canvas.drawing.image(from: canvas.bounds, scale: UIScreen.main.scale)
-//            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-//        }
-//        
-//        func saveCurrentState() {
-//            if currentStateIndex < drawingStates.count - 1 {
-//                drawingStates = Array(drawingStates.prefix(upTo: currentStateIndex + 1))
-//            }
-//            drawingStates.append(canvas.drawing)
-//            currentStateIndex += 1
-//        }
-//}
 
 
 extension PlannerCreationViewModel {

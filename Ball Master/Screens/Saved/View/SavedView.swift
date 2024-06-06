@@ -111,6 +111,9 @@ extension SavedView {
                 ForEach(Array(viewModel.coaches.enumerated()), id: \.element) {
                     index,item in
                     CoachCell(model: item, index: index, saveCoach: viewModel.saveHandler)
+                        .onTapGesture {
+                            viewModel.showCoachDeteil(model: item)
+                        }
                 }
             }
         }
@@ -123,9 +126,9 @@ extension SavedView {
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach(viewModel.games, id: \.self) {
                     item in
-                    GameCell()
+                    GameCell(model: item)
                         .onTapGesture {
-                            
+                            viewModel.showDeteilGame(model: item)
                         }
                 }
             }

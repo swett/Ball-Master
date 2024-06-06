@@ -13,11 +13,11 @@ struct GameModel: Identifiable, Codable, Hashable {
     let teams: Teams
     var score: ScoreInfo
     var events: [Events] = []
-    var isRunning: Bool = false
+    var isRunning: Bool = true
     var gameDuration: TimeInterval = 0
+    var currentTime: TimeInterval = 0
     var dateCreation: Date = Date()
-    var startTime: Date?
-    var endTime: Date?
+    var lastUpdateTime: Date? = nil
 
     
     
@@ -30,6 +30,31 @@ struct GameModel: Identifiable, Codable, Hashable {
         }
         
     }
+    
+    mutating func startGame() {
+        isRunning = true
+        lastUpdateTime = Date()
+    }
+    
+    mutating func stopGame() {
+        isRunning = false
+        lastUpdateTime = Date()
+    }
+    
+    
+    mutating func update(with interval: TimeInterval) {
+            guard isRunning else { return }
+            self.currentTime += interval
+        }
+    
+    mutating func adjustTimeSinceLastUpdate() {
+          guard let lastUpdateTime = lastUpdateTime else { return }
+          let elapsed = Date().timeIntervalSince(lastUpdateTime)
+          currentTime += elapsed
+          self.lastUpdateTime = Date()
+      }
+    
+    
 }
 
 

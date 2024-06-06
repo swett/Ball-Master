@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PencilKit
+import SwiftMessages
 struct PlannerCreationView: View {
     @Environment(\.undoManager) private var undoManager
     @ObservedObject var viewModel: PlannerCreationViewModel
@@ -58,18 +59,28 @@ extension PlannerCreationView {
                     }
                 }
                 Spacer()
-                Text("Some Planner Name")
+                Text("\(viewModel.plannerName)")
                     .font(.custom("Sombra-Medium", size: 17))
                     .foregroundStyle(Color.theme.mainTextColor)
                 Spacer()
                 Button {
-                    
+                    withAnimation(.smooth) {
+                        viewModel.isShowSaveAlert.toggle()
+                    }
                 } label: {
                     Text("Save")
                         .font(.custom("Sombra-Medium", size: 17))
                         .foregroundStyle(Color.theme.buttonColor)
                 }
                 .padding(.trailing, 16)
+                .alert("Do you really finish planning?",isPresented: $viewModel.isShowSaveAlert) {
+                    Button("No", role: .cancel) { }
+                    Button {
+                        saveModel()
+                    } label: {
+                        Text("Yes")
+                    }
+                }
             } else {
                 Button {
                     viewModel.backToMain()
@@ -221,6 +232,7 @@ extension View {
 extension PlannerCreationView {
     private var plannerSection: some View {
         VStack {
+            Spacer(minLength: 30)
             drawingElement
             Spacer()
             HStack {
@@ -281,7 +293,8 @@ extension PlannerCreationView {
      private var drawingElement: some View {
         ZStack(alignment: .top) {
             Image("field")
-                .padding(.top, 20)
+//                .resizable()
+//                .frame(width: 358, height: 605)
             
             DrawingView(canvas: $viewModel.canvas, isDrawing: $viewModel.isDrawing)
                 
@@ -306,6 +319,7 @@ extension PlannerCreationView {
                 TipView(hideTip: $viewModel.isHideTip)
             }
         }
+        
     }
 }
 
@@ -333,12 +347,24 @@ extension PlannerCreationView {
     func saveModel() {
         let fileName = UUID().uuidString
         let image = drawingElement.snapshot()
+        viewModel.imageSnapShoot = image
         if let imagePath = ImageSaver.shared.saveImageToDocumentsDirectory(image: image, fileName: fileName) {
-            let newModel = PlannerModel(name: "Example Plan", description: "Description", planImage: imagePath)
+            let newModel = PlannerModel(name: viewModel.plannerName, description: viewModel.plannerDescription, planImage: fileName)
             AppData.shared.plannerArray.append(newModel)
             AppData.shared.savePlanners()
+            AppData.shared.userStat.plannersAdd()
+            AppData.shared.saveUserStats()
+            let message = DemoMessage(title: "Planner Sucesful Saved!", body: "you back to main screen")
+            let messageView = MessageHostingView(id: message.id, content: DemoMessageView(message: message))
+            SwiftMessages.show(view: messageView)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.viewModel.backToMain()
+            }
         } else {
             print("Error saving image")
+            let message = DemoMessage(title: "Error in Saving image", body: "something was broken")
+            let messageView = MessageHostingView(id: message.id, content: DemoMessageView(message: message))
+            SwiftMessages.show(view: messageView)
         }
     }
 }

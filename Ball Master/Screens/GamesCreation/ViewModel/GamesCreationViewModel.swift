@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 
 class GamesCreationViewModel: ObservableObject {
     @Published var isPopUpShowed: Bool = false
@@ -64,6 +64,22 @@ extension GamesCreationViewModel {
         firstLettersTeamTwo = getLetters(words: teamTwoName)
     }
     
+    func createGame() {
+        let model = GameModel(teams: Teams(home: TeamModel(name: teamOneName, description: teamOneDescription, color: firstTeamColor), away: TeamModel(name: teamTwoName, description: teamTwoDescription, color: secondTeamColor)), score: ScoreInfo(home: Score(), away: Score()))
+        AppData.shared.gamesArray.append(model)
+        AppData.shared.saveGames()
+        AppData.shared.userStat.gamesAdd()
+        AppData.shared.saveUserStats()
+        print(AppData.shared.gamesArray)
+        withAnimation(.smooth) {
+            isPopUpShowed.toggle()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            guard let modelInGameArray = AppData.shared.gamesArray.first(where: {$0.id == model.id}) else {return}
+            self.coordinator?.showActiveGame(game: modelInGameArray)
+        }
+        
+    }
  
 }
 

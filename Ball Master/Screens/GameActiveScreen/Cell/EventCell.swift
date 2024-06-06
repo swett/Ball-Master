@@ -28,7 +28,7 @@ struct EventCell: View {
                 .frame(width: 42, height: 35)
                 .foregroundStyle(Color(hex: "#2C2E32"))
                 .overlay {
-                    Text("  \(model.time)`")
+                    Text("  \(timeStringOnlyMinutes(time: TimeInterval(model.time)))`")
                         .font(.custom("Montserrat-Medium", size: 12))
                         .foregroundStyle(Color.theme.mainTextColor)
                 }

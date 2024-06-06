@@ -49,14 +49,14 @@ extension PlannerDeteilView {
     private var text: some View {
         VStack {
             HStack {
-                Text("Planner Deteil")
+                Text("\(viewModel.model.name)")
                     .foregroundStyle(Color.theme.mainTextColor)
                     .font(.custom("Sombra-Black", size: 24))
                 Spacer()
             }
             .padding(.horizontal, 16)
             ScrollView {
-                Text("Some team description bla bla. Image overflow background main figma edit horizontal. Star fill align connection polygon. Slice comment blur edit vector distribute community.")
+                Text("\(viewModel.model.description)")
                     .foregroundStyle(Color.theme.deteilsTextColor)
                     .font(.custom("Montserrat-Medium", size: 16))
             }
@@ -69,7 +69,15 @@ extension PlannerDeteilView {
 extension PlannerDeteilView {
     private var plannerImage: some View {
         VStack {
-            Image("")
+//            Image("\(viewModel.model.planImage)")
+            if let uiImage = ImageSaver.shared.getImageFromDocumentsDirectory(fileName: viewModel.model.planImage) {
+                       Image(uiImage: uiImage)
+                           .resizable()
+                           .aspectRatio(contentMode: .fit)
+                   } else {
+                       Text("Image not found")
+                           .foregroundColor(.red)
+                   }
         }
     }
 }

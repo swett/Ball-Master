@@ -40,7 +40,7 @@ extension CoachView {
            
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach(0...4, id: \.self) {
+                    ForEach(viewModel.coaches, id: \.self) {
                         item in
                         VStack {
                             Circle()
@@ -52,12 +52,14 @@ extension CoachView {
                                         .frame(width: 42, height: 42)
                                         .cornerRadius(30)
                                 }
-                            Text("Name")
+                            Text("\(item.name)")
                                 .font(.custom("Sombra-Black", size: 14))
                                 .foregroundStyle(Color.theme.mainTextColor)
-                            Text("Surname")
-                                .font(.custom("Sombra-Black", size: 14))
-                                .foregroundStyle(Color.theme.mainTextColor)
+                                .frame(width: 80)
+                                .multilineTextAlignment(.center)
+                        }
+                        .onTapGesture {
+                            viewModel.openDeteilCoach(model: item)
                         }
                     }
                 }
@@ -85,6 +87,9 @@ extension CoachView {
                 ForEach(Array(viewModel.coaches.enumerated()), id: \.element) {
                     index, item in
                     CoachCell(model: item, index: index, saveCoach: viewModel.saveHandler)
+                        .onTapGesture {
+                            viewModel.openDeteilCoach(model: item)
+                        }
                 }
                 Spacer(minLength: 90)
             }

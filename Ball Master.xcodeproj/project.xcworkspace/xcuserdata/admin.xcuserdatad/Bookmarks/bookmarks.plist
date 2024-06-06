@@ -157,7 +157,7 @@
 					<key>StartingLineNumber</key>
 					<string>12</string>
 					<key>Timestamp</key>
-					<string>738678871.301523</string>
+					<string>739369439.065275</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -173,11 +173,11 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>        ZStack(alignment:.top) {
 </string>
 				<key>leading</key>
-				<string>    var body: some View {
-        ZStack(alignment:.top) {
+				<string>    var model: GameModel
+    var body: some View {
 </string>
 				<key>trailing</key>
 				<string>            VStack {

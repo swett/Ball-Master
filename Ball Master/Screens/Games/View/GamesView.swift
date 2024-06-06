@@ -24,6 +24,9 @@ struct GamesView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.adjustTimesOnAppear()
+        }
     }
 }
 
@@ -52,7 +55,7 @@ extension GamesView {
             .padding(.horizontal, 16)
             
             Button {
-                
+                viewModel.openCreationGame()
             } label: {
                 HStack {
                     Image("plus")
@@ -92,7 +95,20 @@ extension GamesView {
 extension GamesView {
     private var gamesState: some View {
         VStack {
-            
+            ScrollView(.vertical, showsIndicators: false) {
+                ForEach(viewModel.gamesArray, id: \.self) {
+                    item in
+                    GameCell(model: item)
+                        .onTapGesture {
+                            if item.isRunning {
+                                viewModel.openActiveGameScreen(model: item)
+                            } else {
+                                viewModel.openGameDeteil(model: item)
+                            }
+                            
+                        }
+                }
+            }
         }
     }
 }

@@ -13,4 +13,5 @@ struct PlannerModel: Identifiable, Hashable, Codable {
     let name: String
     let description: String
     let planImage: String
+    var dateCreation: Date = Date()
 }

@@ -14,19 +14,43 @@ class ImageSaver {
     private init() {}
     
     func saveImageToDocumentsDirectory(image: UIImage, fileName: String) -> String? {
-        guard let data = image.jpegData(compressionQuality: 1.0) else { return nil }
+        guard let data = image.jpegData(compressionQuality: 1.0) else {
+            print("Failed to get JPEG representation of UIImage")
+            return nil
+        }
         
         let fileManager = FileManager.default
-        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            print("Failed to get documents directory URL")
+            return nil
+        }
         
         let fileURL = documentsDirectory.appendingPathComponent("\(fileName).jpg")
         
         do {
             try data.write(to: fileURL)
+            print("Image successfully saved at \(fileURL.path)")
             return fileURL.path
         } catch {
-            print("Error saving image: \(error)")
+            print("Error saving image: \(error.localizedDescription)")
             return nil
         }
     }
+    
+    func getImageFromDocumentsDirectory(fileName: String) -> UIImage? {
+            let fileManager = FileManager.default
+            guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                print("Failed to get documents directory URL")
+                return nil
+            }
+            
+            let fileURL = documentsDirectory.appendingPathComponent("\(fileName).jpg")
+            
+            if fileManager.fileExists(atPath: fileURL.path) {
+                return UIImage(contentsOfFile: fileURL.path)
+            } else {
+                print("Image not found at \(fileURL.path)")
+                return nil
+            }
+        }
 }

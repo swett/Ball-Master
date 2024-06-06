@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import SwiftMessages
 struct GameActiveView: View {
     @ObservedObject var viewModel: GameActiveViewModel
     var body: some View {
@@ -37,7 +37,7 @@ extension GameActiveView {
     private var header: some View {
         HStack {
              Button {
-//                 viewModel.backToMain()
+                 viewModel.leaveFromScreen()
              } label: {
                  Image("backButton")
                      .frame(width: 52, height: 52)
@@ -66,6 +66,21 @@ extension GameActiveView {
                         .font(.custom("Sombra-Medium", size: 17))
                         .multilineTextAlignment(.center)
                         .frame(width: 115)
+                }
+                Spacer()
+                VStack {
+                    Text("Live")
+                        .font(.custom("Sombra-Medium", size: 15))
+                        .foregroundStyle(Color.theme.buttonColor)
+                    
+                    RoundedRectangle(cornerRadius: 23)
+                        .frame(width: 78, height: 36)
+                        .foregroundStyle(Color(hex: "#2C2E32"))
+                        .overlay {
+                            Text("\(timeString(time: (viewModel.gameUpdate?.currentTime)!))")
+                                .foregroundStyle(Color.theme.mainTextColor)
+                                .font(.custom("Montserrat-Medium", size: 16))
+                        }
                 }
                 Spacer()
                 VStack {
@@ -124,7 +139,7 @@ extension GameActiveView {
                 .alert("Do you really want to refresh your game data?",isPresented: $viewModel.isShowAlerRefresh) {
                     Button("Cancel", role: .cancel) { }
                     Button() {
-                        
+                        viewModel.refreshData()
                     } label: {
                         Text("Refresh")
                         
@@ -132,10 +147,10 @@ extension GameActiveView {
                 }
                 
                 Button {
-                    
+                    viewModel.saveGame()
                 } label: {
                     HStack {
-                        Image("save")
+                        Image(viewModel.isSaved ? "saved":"save")
                         Text("Save")
                             .foregroundStyle(Color.theme.mainTextColor)
                             .font(.custom("Sombra-Medium", size: 17))
@@ -226,7 +241,13 @@ extension GameActiveView {
             .alert("Do you really want to finish  game?",isPresented: $viewModel.isShowAlert) {
                 Button("Cancel", role: .cancel) { }
                 Button(role: .destructive) {
-                    
+                    viewModel.finishGame()
+                    let message = DemoMessage(title: "Game Sucesful Saved!", body: "you back to main screen")
+                    let messageView = MessageHostingView(id: message.id, content: DemoMessageView(message: message))
+                    SwiftMessages.show(view: messageView)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        self.viewModel.backToMain()
+                    }
                 } label: {
                     Text("Finish")
                     

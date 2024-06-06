@@ -24,6 +24,9 @@ struct PlannerView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.getPlannersArray()
+        }
     }
 }
 
@@ -37,7 +40,7 @@ extension PlannerView {
         VStack {
             HStack {
                 VStack {
-
+                    
                     Text("Planner")
                         .font(.custom("Sombra-Medium", size: 32))
                         .foregroundStyle(Color.theme.mainTextColor)
@@ -50,7 +53,7 @@ extension PlannerView {
             .padding(.horizontal, 16)
             
             Button {
-                
+                viewModel.openPlanerCreation()
             } label: {
                 HStack {
                     Image("plus")
@@ -90,7 +93,16 @@ extension PlannerView {
 extension PlannerView {
     private var plannerState: some View {
         VStack {
-            
+            ScrollView(.vertical, showsIndicators: false) {
+                ForEach(viewModel.plannerArrray, id: \.self) {
+                    item in
+                    PlannerCell(model: item)
+                        .onTapGesture {
+                            viewModel.openPlannerDeteil(model: item)
+                            
+                        }
+                }
+            }
         }
     }
 }

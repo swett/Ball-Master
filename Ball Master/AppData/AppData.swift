@@ -43,18 +43,28 @@ class AppData: NSObject {
     }
     var userStat: User = User()
     var plannerArray: [PlannerModel] = []
+    var gamesArray:[GameModel] = []
     var savedCoaches: [CoachModel] = []
+    var savedGames: [GameModel] = []
     static let shared: AppData = AppData()
 }
 
 
 extension AppData {
     func defaultLoad() {
-        
+        saveUserStats()
+        saveGames()
+        savedCoach()
+        savePlanners()
+        saveGamesToFavorite()
     }
     
     func loadData() {
-        
+        userStat = getUserStats()
+        plannerArray = getSavedPlanners()
+        gamesArray = getGames()
+        savedCoaches = getSavedCoaches()
+        savedGames = getSavedGames()
     }
 }
 
@@ -117,6 +127,38 @@ extension AppData {
         let key = Keys.userStats
         userStat = try! decoder.decode(User.self, from: defaultData.data(forKey: key)!)
         return userStat
+    }
+    
+    func saveGames() {
+        let encoder = JSONEncoder()
+        let key = Keys.gamesAll
+        guard let data = try? encoder.encode(gamesArray) else {
+            return
+        }
+        defaultData.set(data, forKey: key)
+    }
+    
+    func getGames() -> [GameModel] {
+        let decoder = JSONDecoder()
+        let key = Keys.gamesAll
+        gamesArray = try! decoder.decode([GameModel].self, from: defaultData.data(forKey: key)!)
+        return gamesArray
+    }
+    
+    func saveGamesToFavorite() {
+        let encoder = JSONEncoder()
+        let key = Keys.gamesSaved
+        guard let data = try? encoder.encode(savedGames) else {
+            return
+        }
+        defaultData.set(data, forKey: key)
+    }
+    
+    func getSavedGames() -> [GameModel] {
+        let decoder = JSONDecoder()
+        let key = Keys.gamesSaved
+        savedGames = try! decoder.decode([GameModel].self, from: defaultData.data(forKey: key)!)
+        return savedGames
     }
     
 }
