@@ -76,7 +76,7 @@ extension PlannerCreationViewModel {
 
 extension PlannerCreationViewModel {
     func addPlayerToView(name: String, number: String, type: PlayerOrOpponent) {
-        let player = PlannerPlayer(name: name, number: number, type: type)
+        let player = PlannerPlayer(name: name, number: number, type: type, position: CGPoint(x: 100, y: 150))
         
         playersArray.append(player)
     

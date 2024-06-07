@@ -25,7 +25,6 @@ struct PlannerCreationView: View {
                 }
             }
         }
-//        .environment(\.colorScheme, .dark)
     }
     
 }
@@ -298,10 +297,10 @@ extension PlannerCreationView {
             
             DrawingView(canvas: $viewModel.canvas, isDrawing: $viewModel.isDrawing)
                 
-            ForEach(viewModel.playersArray, id: \.self) {
-                item in
+            ForEach($viewModel.playersArray, id: \.self) {
+                $item in
                 
-                DraggablePlayer(model: item, isShowAlert: $viewModel.isShowAlert)
+                DraggablePlayer(model: $item, isShowAlert: $viewModel.isShowAlert)
                     .alert("Delete Player?",isPresented: $viewModel.isShowAlert) {
                         Button("Cancel", role: .cancel) { }
                         Button(role: .destructive) {
@@ -319,7 +318,9 @@ extension PlannerCreationView {
                 TipView(hideTip: $viewModel.isHideTip)
             }
         }
-        
+        .frame(width: 358, height: 605)  // Ensure the view has a specific size
+        .background(Color.clear)          // Ensure background is clear
+        .ignoresSafeArea()
     }
 }
 
@@ -329,18 +330,22 @@ extension View {
     func snapshot() -> UIImage {
         let controller = UIHostingController(rootView: self)
         let view = controller.view
-
+        
+        // Ensure the view is laid out correctly
         let targetSize = controller.view.intrinsicContentSize
         view?.bounds = CGRect(origin: .zero, size: targetSize)
         view?.backgroundColor = .clear
+        
+        // Debugging: Print target size and view bounds
+        print("Target Size: \(targetSize)")
+        print("View Bounds: \(view?.bounds ?? .zero)")
 
+        // Use renderer to create the snapshot
         let renderer = UIGraphicsImageRenderer(size: targetSize)
-
         return renderer.image { _ in
-            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+            view?.drawHierarchy(in: view!.bounds, afterScreenUpdates: true)
         }
     }
-    
 }
 
 extension PlannerCreationView {

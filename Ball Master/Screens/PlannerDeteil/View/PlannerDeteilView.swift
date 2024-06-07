@@ -69,11 +69,12 @@ extension PlannerDeteilView {
 extension PlannerDeteilView {
     private var plannerImage: some View {
         VStack {
-//            Image("\(viewModel.model.planImage)")
             if let uiImage = ImageSaver.shared.getImageFromDocumentsDirectory(fileName: viewModel.model.planImage) {
                        Image(uiImage: uiImage)
                            .resizable()
+//                           .frame(width: 358, height: 605)
                            .aspectRatio(contentMode: .fit)
+                
                    } else {
                        Text("Image not found")
                            .foregroundColor(.red)
