@@ -11,7 +11,7 @@ struct PracticeCell: View {
     var model: PracticeModel
     var body: some View {
         ZStack {
-            Image("best3")
+            Image("\(model.image)")
                 .resizable()
                 .frame(height: 179)
                 .cornerRadius(35)

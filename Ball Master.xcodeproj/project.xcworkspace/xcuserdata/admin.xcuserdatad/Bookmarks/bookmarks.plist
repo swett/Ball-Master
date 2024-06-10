@@ -86,7 +86,7 @@
 				<key>leading</key>
 				<string>    var body: some View {
         ZStack {
-            Image("best3")</string>
+            Image("\(model.image)")</string>
 				<key>trailing</key>
 				<string>                .resizable()
                 .frame(height: 179)
