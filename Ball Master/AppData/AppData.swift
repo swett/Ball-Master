@@ -52,19 +52,19 @@ class AppData: NSObject {
 
 extension AppData {
     func defaultLoad() {
-        saveUserStats()
-        saveGames()
-        savedCoach()
-        savePlanners()
-        saveGamesToFavorite()
+//        saveUserStats()
+//        saveGames()
+//        savedCoach()
+//        savePlanners()
+//        saveGamesToFavorite()
     }
     
     func loadData() {
-        userStat = getUserStats()
-        plannerArray = getSavedPlanners()
-        gamesArray = getGames()
-        savedCoaches = getSavedCoaches()
-        savedGames = getSavedGames()
+//        userStat = getUserStats()
+//        plannerArray = getSavedPlanners()
+//        gamesArray = getGames()
+//        savedCoaches = getSavedCoaches()
+//        savedGames = getSavedGames()
     }
 }
 

@@ -45,6 +45,10 @@ extension GamesViewModel {
         updateLastDate()
         coordinator?.showActiveGame(game: model)
     }
+    
+    func showStats() {
+        coordinator?.showProfileScreen()
+    }
 }
 
 

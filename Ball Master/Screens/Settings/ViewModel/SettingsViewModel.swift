@@ -60,12 +60,20 @@ extension SettingsViewModel {
         coordinator?.showTermsPolicy(type: .privacy)
     }
     
+    func showSaved() {
+        coordinator?.showFavorites()
+    }
+    
     func showBestPractce() {
-        
+        coordinator?.showBestPractice()
+    }
+    
+    func showStats() {
+        coordinator?.showProfileScreen()
     }
     
     @MainActor func alertShow() {
-//        showAlert(with: "You alredy call request", with: "please wait to send an email", viewcontroller: self.view!)
+        showAlert(with: "You alredy call request", with: "please wait to send an email", viewcontroller: self.view!)
     }
     
     @MainActor func openScreenByTittle(title: String) {
@@ -74,6 +82,7 @@ extension SettingsViewModel {
         case "Privacy Policy" : openPolicy()
         case "Rate Us" : rateApp()
         case "Feedback" : support()
+        case "Favorites": showSaved()
         case "Best Practice": showBestPractce()
         default: break
         }
@@ -111,7 +120,7 @@ extension SettingsViewModel {
             view?.present(mail, animated: true)
         } else {
             print("Application is not able to send an email")
-//            showAlert(with: "Application is not able", with: "to send an email", viewcontroller: view!)
+            showAlert(with: "Application is not able", with: "to send an email", viewcontroller: view!)
         }
     }
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

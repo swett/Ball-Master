@@ -31,6 +31,19 @@ struct GameModel: Identifiable, Codable, Hashable {
         
     }
     
+    mutating func deleteEvent(index: IndexSet) {
+        for i in index.makeIterator() {
+            let event = self.events[i]
+            if self.teams.home.id == event.team.id {
+                self.score.home.minusScore(amount: event.score)
+            } else {
+                self.score.away.minusScore(amount: event.score)
+            }
+        }
+        self.events.remove(atOffsets: index)
+        
+    }
+    
     mutating func startGame() {
         isRunning = true
         lastUpdateTime = Date()
@@ -68,6 +81,10 @@ struct Score: Codable, Hashable {
     
     mutating func updateScore(amount: Int) {
         self.total += amount
+    }
+    
+    mutating func minusScore(amount: Int) {
+        self.total -= amount
     }
     
 }

@@ -34,7 +34,7 @@ struct CoachCell: View {
                                 
                                 
                             }
-                            .offset(x: 30, y:10)
+                            .offset(x: model.clubIcon.count == 1 ? 50 : 30, y:10)
                         }
                 }
                 .padding(.leading, 16)
@@ -42,7 +42,7 @@ struct CoachCell: View {
                 Text(model.name)
                     .foregroundStyle(Color.theme.mainTextColor)
                     .font(.custom("Sombra-Medium", size: 15))
-                Text(model.strategyDescription)
+                Text(model.strategyName)
                     .foregroundStyle(Color.theme.deteilsTextColor)
                     .font(.custom("Sombra-Thin", size: 13))
                 
@@ -75,7 +75,7 @@ struct CoachCell: View {
 }
 
 #Preview {
-    CoachCell(model: CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"), index: 1, saveCoach: {index in})
+    CoachCell(model: BasketballStrategies.strategies[0], index: 1, saveCoach: {index in})
         .background(Color.black)
         .ignoresSafeArea(.all)
 }

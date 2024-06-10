@@ -193,9 +193,13 @@ extension GameActiveView {
                             item in
                             EventCell(model: item)
                         }
+                        .onDelete(perform: { indexSet in
+                            viewModel.deleteEvent(at: indexSet)
+                        })
                         .listRowSeparatorTint(Color.white.opacity(0.12))
                         .listRowBackground(Color.clear)
                         .listRowInsets(EdgeInsets(top: 5, leading: 0, bottom: 10, trailing: 3))
+                        
                     }
                     .scrollContentBackground(.hidden)
                 }

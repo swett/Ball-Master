@@ -21,6 +21,9 @@ protocol CoordinatorProtocol {
     func showCoachDeteil(coach: CoachModel)
     func showPlanerCreation()
     func showPlanerDeteil(planner: PlannerModel)
+    func showFavorites()
+    func showBestPractice()
+    func showBestPracticeDeteil(model: PracticeModel)
     func popToMain()
     func popOneScreenBack()
 //    func hidePopUpScreens()
@@ -114,7 +117,21 @@ extension Coordinator: CoordinatorProtocol {
         navigationController.pushViewController(plannerDeteilVC, animated: true)
     }
     
+    func showFavorites() {
+        
+    }
     
+    func showBestPractice() {
+        let viewModel = BestPracticeViewModel(coordinator: self)
+        let bestPracticeVC = BestPracticeDeteilVC(viewModel: viewModel)
+        navigationController.pushViewController(bestPracticeVC, animated: true)
+    }
+    
+    func showBestPracticeDeteil(model: PracticeModel) {
+        let viewModel = PracticeDetailViewModel(coordinator: self, model: model)
+        let deteilPracticeVC = PracticeDeteilVC(viewModel: viewModel)
+        navigationController.pushViewController(deteilPracticeVC, animated: true)
+    }
     
     
     func popOneScreenBack() {

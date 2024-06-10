@@ -42,7 +42,9 @@ extension SettingsView {
                 .foregroundStyle(Color.theme.deteilsTextColor)
                 .font(.custom("Montserrat-Regular", size: 15))
             Button {
-                
+                withAnimation(.smooth) {
+                    viewModel.showStats()
+                }
             } label: {
                 Text("See Statistic")
                     .font(.custom("Sombra-Medium", size: 14))

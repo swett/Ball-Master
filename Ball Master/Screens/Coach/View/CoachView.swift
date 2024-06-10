@@ -37,36 +37,48 @@ extension CoachView {
                 Spacer()
             }
             .padding(.horizontal, 16)
-           
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(viewModel.coaches, id: \.self) {
-                        item in
-                        VStack {
-                            Circle()
-                                .stroke(Color.theme.buttonColor,lineWidth: 1)
-                                .frame(width: 54, height: 54)
-                                .overlay {
-                                    Image("coachImage")
-                                        .resizable()
-                                        .frame(width: 42, height: 42)
-                                        .cornerRadius(30)
-                                }
-                            Text("\(item.name)")
-                                .font(.custom("Sombra-Black", size: 14))
-                                .foregroundStyle(Color.theme.mainTextColor)
-                                .frame(width: 80)
-                                .multilineTextAlignment(.center)
-                        }
-                        .onTapGesture {
-                            viewModel.openDeteilCoach(model: item)
+            if viewModel.savedCoachesUpdates.isEmpty {
+                VStack {
+                    Text("You haven`t saved any coach yet, start right now!")
+                        .frame(width: 247)
+                        .font(.custom("Montserrat-Medium", size: 14))
+                        .foregroundStyle(Color.theme.mainTextColor).opacity(0.12)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(width: 358, height: 64)
+                .foregroundStyle(Color.clear)
+                .roundedCornerWithBorder(lineWidth: 1, borderColor: .white.opacity(0.12), radius: 15, corners: [.allCorners])
+            } else {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(viewModel.savedCoachesUpdates, id: \.self) {
+                            item in
+                            VStack {
+                                Circle()
+                                    .stroke(Color.theme.buttonColor,lineWidth: 1)
+                                    .frame(width: 54, height: 54)
+                                    .overlay {
+                                        Image("\(item.image)")
+                                            .resizable()
+                                            .frame(width: 42, height: 42)
+                                            .cornerRadius(30)
+                                    }
+                                Text("\(item.name)")
+                                    .font(.custom("Sombra-Black", size: 14))
+                                    .foregroundStyle(Color.theme.mainTextColor)
+                                    .frame(width: 80)
+                                    .multilineTextAlignment(.center)
+                            }
+                            .onTapGesture {
+                                viewModel.openDeteilCoach(model: item)
+                            }
                         }
                     }
+                   
                 }
-               
+                .frame(height: 96)
+                .padding(.horizontal)
             }
-            .frame(height: 96)
-            .padding(.horizontal)
         }
     }
 }

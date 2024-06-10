@@ -107,15 +107,29 @@ extension SavedView {
 extension SavedView {
     private var coaches: some View {
         VStack {
-            ScrollView(.vertical, showsIndicators: false) {
-                ForEach(Array(viewModel.coaches.enumerated()), id: \.element) {
-                    index,item in
-                    CoachCell(model: item, index: index, saveCoach: viewModel.saveHandler)
-                        .onTapGesture {
-                            viewModel.showCoachDeteil(model: item)
-                        }
+            if viewModel.coaches.isEmpty {
+                VStack {
+                    Text("You haven`t created any games yet, start right now!")
+                        .frame(width: 247)
+                        .font(.custom("Montserrat-Medium", size: 14))
+                        .foregroundStyle(Color.theme.mainTextColor).opacity(0.12)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(width: 358, height: 64)
+                .foregroundStyle(Color.clear)
+                .roundedCornerWithBorder(lineWidth: 1, borderColor: .white.opacity(0.12), radius: 15, corners: [.allCorners])
+            } else {
+                ScrollView(.vertical, showsIndicators: false) {
+                    ForEach(Array(viewModel.coaches.enumerated()), id: \.element) {
+                        index,item in
+                        CoachCell(model: item, index: index, saveCoach: viewModel.saveHandler)
+                            .onTapGesture {
+                                viewModel.showCoachDeteil(model: item)
+                            }
+                    }
                 }
             }
+            
         }
     }
 }
@@ -123,13 +137,26 @@ extension SavedView {
 extension SavedView {
     private var games: some View {
         VStack {
-            ScrollView(.vertical, showsIndicators: false) {
-                ForEach(viewModel.games, id: \.self) {
-                    item in
-                    GameCell(model: item)
-                        .onTapGesture {
-                            viewModel.showDeteilGame(model: item)
-                        }
+            if viewModel.games.isEmpty {
+                VStack {
+                    Text("You haven`t saved any coaches yet, start right now!")
+                        .frame(width: 247)
+                        .font(.custom("Montserrat-Medium", size: 14))
+                        .foregroundStyle(Color.theme.mainTextColor).opacity(0.12)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(width: 358, height: 64)
+                .foregroundStyle(Color.clear)
+                .roundedCornerWithBorder(lineWidth: 1, borderColor: .white.opacity(0.12), radius: 15, corners: [.allCorners])
+            } else {
+                ScrollView(.vertical, showsIndicators: false) {
+                    ForEach(viewModel.games, id: \.self) {
+                        item in
+                        GameCell(model: item)
+                            .onTapGesture {
+                                viewModel.showDeteilGame(model: item)
+                            }
+                    }
                 }
             }
         }

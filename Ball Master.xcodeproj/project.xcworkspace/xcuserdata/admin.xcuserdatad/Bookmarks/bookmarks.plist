@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>114</string>
+					<string>123</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>113</string>
+					<string>122</string>
 					<key>Timestamp</key>
-					<string>738585242.2731301</string>
+					<string>739707531.8036309</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -34,7 +34,7 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>//            showAlert(with: "Application is not able", with: "to send an email", viewcontroller: view!)
+				<string>            showAlert(with: "Application is not able", with: "to send an email", viewcontroller: view!)
 </string>
 				<key>leading</key>
 				<string>        } else {
@@ -106,13 +106,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>28</string>
+					<string>29</string>
 					<key>StartingColumnNumber</key>
-					<string>39</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>27</string>
+					<string>28</string>
 					<key>Timestamp</key>
-					<string>738669172.319886</string>
+					<string>739710105.298442</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -128,12 +128,12 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>        coordinator?.showBestPracticeDeteil(model: model)
 </string>
 				<key>leading</key>
 				<string>    
     func showPracticeDeteil(model: PracticeModel) {
-        // add coordinator for practice</string>
+</string>
 				<key>trailing</key>
 				<string>    }
 }

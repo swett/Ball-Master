@@ -97,6 +97,8 @@
 		841B7E1B2C13102B000EA371 /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 841B7E1A2C13102B000EA371 /* OneSignalExtension */; };
 		841B7E1D2C13102B000EA371 /* OneSignalFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 841B7E1C2C13102B000EA371 /* OneSignalFramework */; };
 		841B7E1F2C13102B000EA371 /* OneSignalInAppMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 841B7E1E2C13102B000EA371 /* OneSignalInAppMessages */; };
+		841B7E222C170DBF000EA371 /* BasketBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B7E212C170DBF000EA371 /* BasketBall.swift */; };
+		841B7E242C17117D000EA371 /* BestPractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841B7E232C17117C000EA371 /* BestPractice.swift */; };
 		843CCB352C074D8000BFFC08 /* SavedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CCB342C074D8000BFFC08 /* SavedViewModel.swift */; };
 		843CCB372C074EE500BFFC08 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CCB362C074EE500BFFC08 /* SavedView.swift */; };
 		843CCB3A2C07530E00BFFC08 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CCB392C07530E00BFFC08 /* GameCell.swift */; };
@@ -241,6 +243,8 @@
 		841B7E0E2C130F96000EA371 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		841B7E102C130F96000EA371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		841B7E182C130FE9000EA371 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		841B7E212C170DBF000EA371 /* BasketBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketBall.swift; sourceTree = "<group>"; };
+		841B7E232C17117C000EA371 /* BestPractice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPractice.swift; sourceTree = "<group>"; };
 		843CCB342C074D8000BFFC08 /* SavedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewModel.swift; sourceTree = "<group>"; };
 		843CCB362C074EE500BFFC08 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		843CCB392C07530E00BFFC08 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
@@ -672,6 +676,7 @@
 		8404F6602C05F940000B6A09 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				841B7E202C170DA7000EA371 /* ContentModel */,
 				841B7DC52C104276000EA371 /* UserModel */,
 				841B7DB82C0F35EC000EA371 /* GameModel */,
 				841B7DB52C0F3477000EA371 /* TeamModel */,
@@ -1016,6 +1021,15 @@
 			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
+		841B7E202C170DA7000EA371 /* ContentModel */ = {
+			isa = PBXGroup;
+			children = (
+				841B7E212C170DBF000EA371 /* BasketBall.swift */,
+				841B7E232C17117C000EA371 /* BestPractice.swift */,
+			);
+			path = ContentModel;
+			sourceTree = "<group>";
+		};
 		843CCB322C074D6500BFFC08 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1297,6 +1311,7 @@
 			files = (
 				8404F6402C04BCD1000B6A09 /* TabViewModel.swift in Sources */,
 				841B7DD52C104D43000EA371 /* OnboardingVC.swift in Sources */,
+				841B7E222C170DBF000EA371 /* BasketBall.swift in Sources */,
 				841B7DCF2C1044A6000EA371 /* UserStatsViewModel.swift in Sources */,
 				841B7DA62C0DCA39000EA371 /* PlayerAddSheet.swift in Sources */,
 				841B7DDB2C104E02000EA371 /* PlannerCreationVC.swift in Sources */,
@@ -1362,6 +1377,7 @@
 				8404F65A2C04D9E2000B6A09 /* ImageExtension.swift in Sources */,
 				843CCB432C0768A500BFFC08 /* PlannerDeteilView.swift in Sources */,
 				8404F6182C00C854000B6A09 /* NavigationVC.swift in Sources */,
+				841B7E242C17117D000EA371 /* BestPractice.swift in Sources */,
 				8404F6532C04CF04000B6A09 /* PlannerView.swift in Sources */,
 				841B7DD12C104CBA000EA371 /* GamesCreationVC.swift in Sources */,
 				841B7DB72C0F34E1000EA371 /* TeamModel.swift in Sources */,

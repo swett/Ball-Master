@@ -9,7 +9,7 @@ import Foundation
 
 
 struct User: Identifiable, Codable {
-    let id: UUID = UUID()
+    var id: UUID = UUID()
     var gamesCreated: Int = 0
     var plannersCreated: Int = 0
     var longestGame: Int = 0
@@ -22,5 +22,13 @@ struct User: Identifiable, Codable {
     
     mutating func plannersAdd() {
         self.plannersCreated += 1
+    }
+    
+    mutating func longestGameUpdate(amount: Int) {
+        self.longestGame = amount
+    }
+    
+    mutating func shortestGameUpdate(amount: Int) {
+        self.shortestGame = amount
     }
 }

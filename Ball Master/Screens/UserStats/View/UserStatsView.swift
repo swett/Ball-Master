@@ -96,7 +96,7 @@ extension UserStatsView {
                     Image("time")
                         .resizable()
                         .frame(width: 24, height: 24)
-                    Text("\(viewModel.user.gamesCreated)")
+                    Text("\(timeStringOnlyMinutes(time: TimeInterval(viewModel.user.longestGame)))")
                         .foregroundStyle(Color.theme.mainTextColor)
                         .font(.custom("Montserrat-Bold", size: 20))
                     Text("Longest Game")
@@ -112,7 +112,7 @@ extension UserStatsView {
                     Image("timer")
                         .resizable()
                         .frame(width: 24, height: 24)
-                    Text("\(viewModel.user.gamesCreated)")
+                    Text("\(timeStringOnlyMinutes(time: TimeInterval(viewModel.user.shortestGame)))")
                         .foregroundStyle(Color.theme.mainTextColor)
                         .font(.custom("Montserrat-Bold", size: 20))
                     Text("Shortest Game")
@@ -138,7 +138,9 @@ extension UserStatsView {
                     .foregroundStyle(Color.theme.mainTextColor)
                 Spacer()
                 Button {
-                    
+                    withAnimation(.smooth) {
+                        viewModel.showBestPractice()
+                    }
                 } label: {
                     Text("See all")
                         .font(.custom("Sombra-Thin", size: 16))

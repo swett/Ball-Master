@@ -10,10 +10,11 @@ import Foundation
 
 class UserStatsViewModel: ObservableObject {
     var user: User = AppData.shared.userStat
-    @Published var practiceArray: [PracticeModel] = [PracticeModel(name: "Arm and abdominal strengthening", image: "best3", type: .defence, content: ""),PracticeModel(name: "Arm and abdominal strengthening", image: "best3", type: .defence, content: ""),PracticeModel(name: "Arm and abdominal strengthening", image: "best3", type: .defence, content: ""),PracticeModel(name: "Arm and abdominal strengthening", image: "best3", type: .defence, content: ""),PracticeModel(name: "Arm and abdominal strengthening", image: "best3", type: .defence, content: ""),PracticeModel(name: "Arm and abdominal strengthening", image: "best3", type: .defence, content: ""),PracticeModel(name: "Arm and abdominal strengthening", image: "best3", type: .defence, content: "")]
+    @Published var practiceArray: [PracticeModel] = BestPracticeData.models
     private let coordinator: CoordinatorProtocol?
     init(coordinator: CoordinatorProtocol? = nil) {
         self.coordinator = coordinator
+        self.calculateGameTime()
     }
 }
 
@@ -24,6 +25,20 @@ extension UserStatsViewModel {
     }
     
     func showPracticeDeteil(model: PracticeModel) {
-        // add coordinator for practice
+        coordinator?.showBestPracticeDeteil(model: model)
+    }
+    
+    func showBestPractice() {
+        coordinator?.showBestPractice()
+    }
+    
+    func calculateGameTime() {
+        let sortedGames = AppData.shared.gamesArray.sorted { $0.gameDuration < $1.gameDuration }
+        let shortestGame = sortedGames.first
+        let longestGame = sortedGames.last
+        user.longestGameUpdate(amount: longestGame?.currentTime.hashValue ?? 0)
+        user.shortestGameUpdate(amount: shortestGame?.currentTime.hashValue ?? 0)
+        AppData.shared.userStat = user
+        AppData.shared.saveUserStats()
     }
 }

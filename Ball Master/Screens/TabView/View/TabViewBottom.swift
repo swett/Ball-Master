@@ -39,6 +39,7 @@ struct TabViewBottom: View {
                     }
                     .frame(height: 76)
                     .padding(.bottom, 12)
+                    .background(Color(hex:"#070F15"))
                     
                     
                 }

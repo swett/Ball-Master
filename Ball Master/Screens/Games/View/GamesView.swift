@@ -51,6 +51,9 @@ extension GamesView {
                 Image("profile")
                     .resizable()
                     .frame(width: 44, height: 44)
+                    .onTapGesture {
+                        viewModel.showStats()
+                    }
             }
             .padding(.horizontal, 16)
             

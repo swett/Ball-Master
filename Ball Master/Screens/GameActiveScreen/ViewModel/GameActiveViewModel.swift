@@ -109,4 +109,9 @@ extension GameActiveViewModel {
         cancellables.forEach { $0.cancel() }
         refreshData()
     }
+    
+    func deleteEvent(at index: IndexSet) {
+        game.deleteEvent(index: index)
+        self.gameUpdate = game
+    }
 }

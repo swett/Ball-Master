@@ -9,7 +9,9 @@ import Foundation
 
 
 class CoachViewModel: ObservableObject {
-    var coaches: [CoachModel] = [CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy"),CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: "", strategyName: "", strategyDescription: "Explore Coach Strategy")]
+    var coaches: [CoachModel] = BasketballStrategies.strategies
+    @Published var savedCoachesUpdates: [CoachModel] = []
+    var savedCoaches: [CoachModel] = AppData.shared.savedCoaches
     var view: TabViewVC?
     var saveHandler: (_ index: Int) -> Void = {index in}
     private let coordinator: CoordinatorProtocol?
@@ -17,6 +19,7 @@ class CoachViewModel: ObservableObject {
         self.coordinator = coordinator
         self.view = view
         self.bind()
+        self.savedCoachesUpdates = self.savedCoaches
     }
 }
 
@@ -26,6 +29,8 @@ extension CoachViewModel {
     func bind() {
         saveHandler = { index in
             AppData.shared.addStrategyToSavedStrategy(model: self.coaches[index])
+            self.savedCoaches = AppData.shared.getSavedCoaches()
+            self.savedCoachesUpdates = self.savedCoaches
         }
     }
     

@@ -98,7 +98,7 @@ extension BestPracticeView {
             }
             .padding(.horizontal, 16)
             ScrollView(.vertical, showsIndicators: false) {
-                ForEach(viewModel.practiceArray, id: \.self) {
+                ForEach(viewModel.sortedPractice, id: \.self) {
                     item in
                     PracticeCell(model: item)
                         .onTapGesture {
