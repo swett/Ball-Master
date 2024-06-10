@@ -15,7 +15,8 @@ struct PracticeDeteilView: View {
                 .ignoresSafeArea(.all)
             Image("\(viewModel.model.image)")
                 .resizable()
-                .frame(height: 333)
+                .scaledToFill()
+                .frame(width: DeviceType.IS_SMALL ? 378 : 400,height: 333)
                 .ignoresSafeArea(.all)
                 .overlay {
                     Color(hex: "#12171B").opacity(0.8)
@@ -24,6 +25,7 @@ struct PracticeDeteilView: View {
             LinearGradient(colors: [Color(hex: "#070F15").opacity(0),Color(hex: "#070F15")], startPoint: .top, endPoint: .bottom)
                 .frame(height: 247)
                 .padding(.top, 90)
+                
             VStack {
                 header
                 main

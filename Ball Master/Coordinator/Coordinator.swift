@@ -118,7 +118,9 @@ extension Coordinator: CoordinatorProtocol {
     }
     
     func showFavorites() {
-        
+        let viewModel = SavedViewModel(coordinator: self)
+        let savedVC = SavedVC(viewModel: viewModel)
+        navigationController.pushViewController(savedVC, animated: true)
     }
     
     func showBestPractice() {

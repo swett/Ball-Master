@@ -15,8 +15,10 @@ struct SettingsView: View {
                 .ignoresSafeArea(.all)
             
             VStack {
-                user
-                list
+                ScrollView(.vertical, showsIndicators: false) {
+                    user
+                    list
+                }
             }
             
         }
@@ -73,10 +75,10 @@ extension SettingsView {
                 .frame(width: 358, height: 496)
                 .padding(.bottom, 49)
                 .overlay {
-                    List {
+                    VStack(spacing: 15)  {
                         ForEach(viewModel.settings, id: \.self) {
                             item in
-                            Section {
+//                            Section {
                                 ForEach(item.options, id: \.self) {
                                     item in
                                     switch item {
@@ -88,18 +90,11 @@ extension SettingsView {
                                         SwitchCellView(option: model)
                                     }
                                 }
-                                Spacer(minLength: 90)
-                            } header: {
-                                Text("")
-                                    .frame(height: 0)
-                            }
+                                Spacer(minLength: 20)
                         }
-                        .listRowSeparatorTint(Color.clear)
-                        .listRowBackground(Color.clear)
-                        .listRowInsets(EdgeInsets(top: 5, leading: 0, bottom: 10, trailing: 3))
                     }
-                    .environment(\.defaultMinListHeaderHeight, 5)
-                    .scrollContentBackground(.hidden)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 16)
                 }
     
         }

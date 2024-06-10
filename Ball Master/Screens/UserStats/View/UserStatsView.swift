@@ -15,8 +15,10 @@ struct UserStatsView: View {
                 .ignoresSafeArea(.all)
             VStack {
                 header
-                userInfo
-                recomends
+                ScrollView(.vertical, showsIndicators: false) {
+                    userInfo
+                    recomends
+                }
             }
         }
     }

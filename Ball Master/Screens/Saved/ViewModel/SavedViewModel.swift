@@ -11,7 +11,7 @@ import Foundation
 class SavedViewModel: ObservableObject {
     @Published var coaches: [CoachModel] = []
     @Published var games: [GameModel] = []
-    var savedCoaches: [CoachModel] = []
+    var savedCoaches: [CoachModel] = AppData.shared.savedCoaches
     var savedGames:[GameModel] = AppData.shared.savedGames
     @Published var selectedIndex: Int = 0
     var saveHandler: (_ index: Int) -> Void = {index in}

@@ -16,7 +16,7 @@ struct CoachDetailView: View {
                 .ignoresSafeArea(.all)
             Rectangle()
                 .foregroundStyle(Color(hex: "#12171B"))
-                .frame(height: 290)
+                .frame(height: DeviceType.IS_SMALL ? 270 : 290)
                 .ignoresSafeArea(.all)
             
             VStack {
@@ -31,7 +31,7 @@ struct CoachDetailView: View {
 }
 
 #Preview {
-    CoachDetailView(viewModel: CoachDetailViewModel(model: CoachModel(image: "coachImage", clubIcon: ["team1","team1"], name: "Davis Lipshutz", content: coachTextStrategy, strategyName: "", strategyDescription: "Explore Coach Strategy")))
+    CoachDetailView(viewModel: CoachDetailViewModel(model: BasketballStrategies.strategies[0]))
 }
 
 
@@ -82,7 +82,7 @@ extension CoachDetailView {
                 }
                 .padding(.top, 10)
             }
-            .padding(.leading, 46)
+            .padding(.leading, 16)
             Spacer()
             HStack {
                 ZStack {
